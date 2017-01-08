@@ -4,8 +4,9 @@ MathJax.Hub.Config({
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
         displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
         processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-      }
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      },
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
      });
      MathJax.Hub.Queue(function() {
        var all = MathJax.Hub.getAllJax(), i;

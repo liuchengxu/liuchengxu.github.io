@@ -10,8 +10,6 @@
   display: none;
 }
 
-
-
 body {
   font: normal 17px/1.5 'PT Serif', "Helvetica Neue", "Helvetica", Arial, sans-serif;
   width: 100%;
@@ -260,10 +258,9 @@ a img {
   cursor: zoom-in;
 }
 
-.post-content a:hover{
+.post-content a:hover {
     text-decoration: none;
     cursor: crosshair;
-    background-color: LightGrey;
+    color: #930ee4;
+    background-color: #E9E7E7;
 }
-
-
