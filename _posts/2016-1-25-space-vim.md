@@ -65,4 +65,4 @@ function! UserConfig()
 endfunction
 ```
 
-For more details, please see [space-vim](https://github.com/space-vim). Hope you like it too.
+For more details, please see [space-vim](https://github.com/liuchengxu/space-vim). Hope you like it too.
