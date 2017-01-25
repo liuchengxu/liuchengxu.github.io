@@ -8,7 +8,7 @@ tags: ['tools']
 author: Liu-Cheng Xu
 ---
 
-It's obvious that I am both a vimmer and spacemacs user (not a spacemacs hacker, yet). I was really amazed by spacemacs' beautiful GUI and mnemonic keybindings when using it at the first time. Now, I oftern use spacemacs in GUI environment. However, I still prefer vim in terminal, for it's much faster than emacs, especially when openning some small files. 
+It's obvious that I am both a vimmer and spacemacs user (not a spacemacs hacker, yet). I was really amazed by spacemacs' beautiful GUI and mnemonic keybindings when using it at the first time. Now, I oftern use spacemacs in GUI environment. However, I still prefer vim in terminal, for it's much faster than emacs, especially when opening some small files. 
 
 Vim is definitely my first choice in terminal, but spacemacs' beautiful appearance is utterly appealing and its efficient keybindings indeed contribute to help me remember much more key mappings in vim. Hence I write a vim colorscheme [space-vim-dark](https://github.com/liuchengxu/space-vim-dark) based on [spacemacs-theme](https://github.com/nashamri/spacemacs-theme). What's more, I reconfigure my vim configuration based on spacemacs' priciples, which is [space-vim](https://github.com/liuchengxu/space-vim).
 
