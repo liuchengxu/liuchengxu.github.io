@@ -81,7 +81,9 @@ function! s:compile_and_run()
 endfunction
 ```
 
-For neovim, [neomake/neomake](https://github.com/neomake/neomake) is worthy of trying.
+For neovim, [neomake/neomake](https://github.com/neomake/neomake) is worthy of trying. Here is the description from neomake's README:
+
+> It is intended to replace the built-in :make command and provides functionality similar to plugins like syntastic and dispatch.vim. It is primarily used to run code linters and compilers from within Vim, but can be used to run any program.
 
 Another approach is to use **[TMUX](https://github.com/tmux/tmux)**. The idea is simple: it can split your terminal screen into two. Basically, you will have one side of your terminal using Vim and the other side will be where you run your scripts.
 
@@ -101,8 +103,16 @@ For more customized python syntax highlightings, please see [space-vim: python L
 
 Actually, python-mode contains tons of stuff to develop python applications in Vim, e.g., static analysis, completion, documentation, and more. (But personally, I prefer to obtain the functionalities by some other better plugins.)
 
+### Summary
+
 There are also some neccessary general programming plugins, e.g., [scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter) for convenient commenter, [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine) or [nathanaelkane/vim-indent-guides](https://github.com/nathanaelkane/vim-indent-guides) for visually displaying indent levels in Vim, etc.
 
-ALthough vim is great and many plugins are productive, IDE is still my first choice when it comes to refactoring code :).
+Although vim is great and many plugins are productive, IDE is still my first choice when it comes to refactoring code :).
 
+<<<<<<< HEAD
 For more details, please see **[space-vim](https://github.com/liuchengxu/space-vim)**, enable ycmd, syntax-checking, python, programming Layer , then you could get a nice vim environment for python like the screenshot. Hope it helpful.
+=======
+For more details, please see [space-vim](https://github.com/liuchengxu/space-vim), enable ycmd, syntax-checking, python, programming Layer , then you could get a nice vim environment for python like the screenshot. Hope it helpful.
+
+![](https://github.com/liuchengxu/space-vim-dark/blob/screenshots/screenshot1.png?raw=true)
+>>>>>>> 8574d3f18d0dd3c242322153d1c8a4357214f073
