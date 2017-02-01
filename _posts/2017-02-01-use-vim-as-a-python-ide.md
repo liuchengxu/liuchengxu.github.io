@@ -9,7 +9,7 @@ tags: ['tools']
 author: Liu-Cheng Xu
 ---
 
-I love vim and often use it to write Python. Here are some useful plugins and tools for building a delightful vim python environment, escpecially for Vim8:
+I love vim and often use it to write Python code. Here are some useful plugins and tools for building a delightful vim python environment, escpecially for Vim8:
 
 ![]({{ site.images }}/posts/vim-python-ide-screenshot.png)
 
@@ -32,7 +32,7 @@ autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf<CR>
 
 You can also take a look at [Chiel92/vim-autoformat](https://github.com/Chiel92/vim-autoformat).
 
-### Sort import
+### Sort Import
 
 [timothycrosley/isort](https://github.com/timothycrosley/isort) helps you sort imports alphabetically, and automatically separated into sections.  For example, use `<LocalLeader>i` to run isort on your current python file:
 
@@ -56,7 +56,7 @@ If use neovim, you can also try [Shougo/deoplete.nvim](https://github.com/Shougo
 If use Vim8, you can execute python file asynchronously by [skywind3000/asyncrun.vim](https://github.com/skywind3000/asyncrun.vim) and output automatically the result to the quickfix window like this:
 
 ```vim
-“ Quick run via <F5>
+" Quick run via <F5>
 nnoremap <F5> :call <SID>compile_and_run()<CR>
 
 augroup SPACEVIM_ASYNCRUN
@@ -105,4 +105,4 @@ There are also some neccessary general programming plugins, e.g., [scrooloose/ne
 
 ALthough vim is great and many plugins are productive, IDE is still my first choice when it comes to refactoring code :).
 
-For more details, please see [space-vim](https://github.com/liuchengxu/space-vim), enable ycmd, syntax-checking, python, programming Layer , then you could get a nice vim environment for python like the screenshot. Hope it helpful.
+For more details, please see **[space-vim](https://github.com/liuchengxu/space-vim)**, enable ycmd, syntax-checking, python, programming Layer , then you could get a nice vim environment for python like the screenshot. Hope it helpful.
