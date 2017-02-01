@@ -18,7 +18,7 @@ The perceptron algorithm can be summarized by the following steps:
 2. For each training sample $x^{(i)}$ perform the following steps:
     1. Compute the output value $\hat{y}$.
     2. Update the weights.
-    
+
 ![perceptron](https://github.com/rasbt/python-machine-learning-book/blob/master/code/ch02/images/02_04.png?raw=true)
 (图片来自 python-machine-learning)
 
