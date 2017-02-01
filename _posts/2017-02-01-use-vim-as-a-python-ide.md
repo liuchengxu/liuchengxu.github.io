@@ -103,6 +103,8 @@ Actually, python-mode contains tons of stuff to develop python applications in V
 
 There are also some neccessary general programming plugins, e.g., [scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter) for convenient commenter, [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine) or [nathanaelkane/vim-indent-guides](https://github.com/nathanaelkane/vim-indent-guides) for visually displaying indent levels in Vim, etc.
 
-ALthough vim is great and many plugins are productive, IDE is still my first choice when it comes to refactoring code :).
+Although vim is great and many plugins are productive, IDE is still my first choice when it comes to refactoring code :).
 
 For more details, please see [space-vim](https://github.com/liuchengxu/space-vim), enable ycmd, syntax-checking, python, programming Layer , then you could get a nice vim environment for python like the screenshot. Hope it helpful.
+
+![](https://github.com/liuchengxu/space-vim-dark/blob/screenshots/screenshot1.png?raw=true)
