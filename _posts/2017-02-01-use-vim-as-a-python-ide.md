@@ -109,10 +109,6 @@ There are also some neccessary general programming plugins, e.g., [scrooloose/ne
 
 Although vim is great and many plugins are productive, IDE is still my first choice when it comes to refactoring code :).
 
-<<<<<<< HEAD
 For more details, please see **[space-vim](https://github.com/liuchengxu/space-vim)**, enable ycmd, syntax-checking, python, programming Layer , then you could get a nice vim environment for python like the screenshot. Hope it helpful.
-=======
-For more details, please see [space-vim](https://github.com/liuchengxu/space-vim), enable ycmd, syntax-checking, python, programming Layer , then you could get a nice vim environment for python like the screenshot. Hope it helpful.
 
 ![](https://github.com/liuchengxu/space-vim-dark/blob/screenshots/screenshot1.png?raw=true)
->>>>>>> 8574d3f18d0dd3c242322153d1c8a4357214f073
