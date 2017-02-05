@@ -40,7 +40,7 @@ You can also take a look at [Chiel92/vim-autoformat](https://github.com/Chiel92/
 autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
 ```
 
-Or you can use its vim plugins: [fisadev/vim-isort](https://github.com/fisadev/vim-isort#installation).
+Or you can use its vim plugin: [fisadev/vim-isort](https://github.com/fisadev/vim-isort#installation).
 
 ### Auto Completion
 
@@ -105,10 +105,15 @@ Actually, python-mode contains tons of stuff to develop python applications in V
 
 ### Summary
 
-There are also some neccessary general programming plugins, e.g., [scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter) for convenient commenter, [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine) or [nathanaelkane/vim-indent-guides](https://github.com/nathanaelkane/vim-indent-guides) for visually displaying indent levels in Vim, etc.
+There are also some neccessary general programming plugins, e.g., [scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter) for convenient commenter, [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine) or [nathanaelkane/vim-indent-guides](https://github.com/nathanaelkane/vim-indent-guides) for visually displaying indent levels in Vim, [fzf](https://github.com/junegunn/fzf)  and [fzf.vim](https://github.com/junegunn/fzf.vim) for fuzzy file searching, etc.
 
-Although vim is great and many plugins are productive, IDE is still my first choice when it comes to refactoring code :).
+Although vim is great and many plugins are productive, IDE is still my first choice when it comes to refactoring code and debugging:). Some useful links for debugging python:
 
-For more details, please see **[space-vim](https://github.com/liuchengxu/space-vim)**, enable ycmd, syntax-checking, python, programming Layer , then you could get a nice vim environment for python like the screenshot. Hope it helpful.
+- [python-debugging-tips](http://stackoverflow.com/questions/1623039/python-debugging-tips)
+- [my-python-ipython-vim-debugging-workflow](http://keflavich.github.io/blog/my-python-ipython-vim-debugging-workflow.html)
+
+#### Self-promotion
+
+For detailed vim configuration, please see **[space-vim](https://github.com/liuchengxu/space-vim)**, enable ycmd, syntax-checking, python, programming Layer , then you could get a nice vim environment for python like the screenshot. Hope it helpful.
 
 ![](https://github.com/liuchengxu/space-vim-dark/blob/screenshots/screenshot1.png?raw=true)
