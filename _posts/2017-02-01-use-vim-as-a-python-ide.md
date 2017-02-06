@@ -112,8 +112,6 @@ Although vim is great and many plugins are productive, IDE is still my first cho
 - [python-debugging-tips](http://stackoverflow.com/questions/1623039/python-debugging-tips)
 - [my-python-ipython-vim-debugging-workflow](http://keflavich.github.io/blog/my-python-ipython-vim-debugging-workflow.html)
 
-#### Self-promotion
-
 For detailed vim configuration, please see **[space-vim](https://github.com/liuchengxu/space-vim)**, enable ycmd, syntax-checking, python, programming Layer , then you could get a nice vim environment for python like the screenshot. Hope it helpful.
 
 ![](https://github.com/liuchengxu/space-vim-dark/blob/screenshots/screenshot1.png?raw=true)
