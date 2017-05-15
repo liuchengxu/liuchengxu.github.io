@@ -99,7 +99,7 @@ hi pythonSelf  ctermfg=68  guifg=#5f87d7 cterm=bold gui=bold
 
 ![](https://github.com/liuchengxu/space-vim-dark/blob/screenshots/screenshot2.png?raw=true)
 
-For more customized python syntax highlightings, please see [space-vim: python Layer](https://github.com/liuchengxu/space-vim/blob/master/layers/%2Blang/python/config.vim#L52-L72) and *syntax/python.vim* in [python-mode/python-mode](https://github.com/python-mode/python-mode/blob/develop/syntax/python.vim) .
+For more customized python syntax highlightings, please see [space-vim-dark theme](https://github.com/liuchengxu/space-vim-dark/blob/master/colors/space-vim-dark.vim#L288-L311) and *syntax/python.vim* in [python-mode/python-mode](https://github.com/python-mode/python-mode/blob/develop/syntax/python.vim) . You can also put them after color command.
 
 Actually, python-mode contains tons of stuff to develop python applications in Vim, e.g., static analysis, completion, documentation, and more. (But personally, I prefer to obtain the functionalities by some other better plugins.)
 
