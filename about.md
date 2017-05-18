@@ -17,7 +17,6 @@ Email: xuliuchengxlc#gmail.com
 You can also find me here:
 
 - [GitHub](https://github.com/liuchengxu)
-- [CSDN](http://blog.csdn.net/simple_the_best)
 
 ### Biography
 
