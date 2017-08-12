@@ -27,7 +27,9 @@ If you use Vim8, [w0rp/ale](https://github.com/w0rp/ale) is a better option than
 [google/yapf](https://github.com/google/yapf) can be used to format python code. Make a key mapping as bellow, then you can format your python code via `<LocalLeader> =`.
 
 ```vim
+
 autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf<CR>
+
 ```
 
 You can also take a look at [Chiel92/vim-autoformat](https://github.com/Chiel92/vim-autoformat).
@@ -37,19 +39,27 @@ You can also take a look at [Chiel92/vim-autoformat](https://github.com/Chiel92/
 [timothycrosley/isort](https://github.com/timothycrosley/isort) helps you sort imports alphabetically, and automatically separated into sections.  For example, use `<LocalLeader>i` to run isort on your current python file:
 
 ```vim
+
 autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
+
 ```
 
 Or you can use its vim plugin: [fisadev/vim-isort](https://github.com/fisadev/vim-isort#installation).
 
 ### Auto Completion
 
-[Valloric/YouCompleteMe](https://github.com/Valloric/YouCompleteMe) is a good way to provide code auto completion. If you think YCM is too huge to give a try, [jedi-vim](https://github.com/davidhalter/jedi-vim) is an alternative. They all use [jedi](https://github.com/davidhalter/jedi) as their backend.
+[Valloric/YouCompleteMe](https://github.com/Valloric/YouCompleteMe) is a good way to provide code auto completion. It has several completion engines, aside from Python, C, C++, Rust, Go and Javascript are also supported. Whereas a bunch of people also think YCM is too huge and need to be compiled, then [jedi-vim](https://github.com/davidhalter/jedi-vim) is an alternative. They all use [jedi](https://github.com/davidhalter/jedi) as their backend.
 
 ![](https://github.com/davidhalter/jedi/raw/master/docs/_screenshots/screenshot_complete.png)
 (taken from jedi-vim)
 
-If use neovim, you can also try [Shougo/deoplete.nvim](https://github.com/Shougo/deoplete.nvim).
+What's more, I know many people use [Shougo/deoplete.nvim](https://github.com/Shougo/deoplete.nvim). Thanks to the async API, some more hopeful completion plugins are borned:
+
+[roxma/nvim-completion-manager](https://github.com/roxma/nvim-completion-manager) also provides experimental support for Vim8.
+
+![](https://cloud.githubusercontent.com/assets/4538941/23752974/8fffbdda-0512-11e7-8466-8a30f480de21.gif)
+
+[prabirshrestha/asyncomplete.vim](https://github.com/prabirshrestha/asyncomplete.vim) is a fork of nvim-completion-manager in pure vim script with python dependency removed.
 
 ### Quick Run
 
