@@ -50,16 +50,20 @@ Or you can use its vim plugin: [fisadev/vim-isort](https://github.com/fisadev/vi
 
 [Valloric/YouCompleteMe](https://github.com/Valloric/YouCompleteMe) is a good way to provide code auto completion. It has several completion engines, aside from Python, C, C++, Rust, Go and Javascript are also supported. Whereas a bunch of people also think YCM is too huge and need to be compiled, then [jedi-vim](https://github.com/davidhalter/jedi-vim) is an alternative. They all use [jedi](https://github.com/davidhalter/jedi) as their backend.
 
-![](https://github.com/davidhalter/jedi/raw/master/docs/_screenshots/screenshot_complete.png)
-(taken from jedi-vim)
+![jedi-vim](https://github.com/davidhalter/jedi/raw/master/docs/_screenshots/screenshot_complete.png)
+(from jedi-vim)
 
 What's more, I know many people use [Shougo/deoplete.nvim](https://github.com/Shougo/deoplete.nvim). Thanks to the async API, some more hopeful completion plugins are borned:
 
-[roxma/nvim-completion-manager](https://github.com/roxma/nvim-completion-manager) also provides experimental support for Vim8.
+[roxma/nvim-completion-manager](https://github.com/roxma/nvim-completion-manager) also provides experimental support for Vim8. [prabirshrestha/asyncomplete.vim](https://github.com/prabirshrestha/asyncomplete.vim) is a fork of nvim-completion-manager in pure vim script with python dependency removed.
 
-![](https://cloud.githubusercontent.com/assets/4538941/23752974/8fffbdda-0512-11e7-8466-8a30f480de21.gif)
+![nvim-completion-manager](https://cloud.githubusercontent.com/assets/4538941/23752974/8fffbdda-0512-11e7-8466-8a30f480de21.gif)
+(from NCM)
 
-[prabirshrestha/asyncomplete.vim](https://github.com/prabirshrestha/asyncomplete.vim) is a fork of nvim-completion-manager in pure vim script with python dependency removed.
+[maralla/completor.vim](https://github.com/maralla/completor.vim) is an code completion framework for Vim8, and support NeoVim too.
+
+![completor.vim](https://camo.githubusercontent.com/0dcc3b75a89c1366910d913fa5668a5b004fedb7/687474703a2f2f692e696d6775722e636f6d2f6635456f6941362e676966)
+(from Completor)
 
 ### Quick Run
 
