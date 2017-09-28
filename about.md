@@ -24,8 +24,8 @@ I received my B.Sc. degree in Computer Science and Technology in June 2016 from 
 
 ### Research Interest
 
-Currently I am focusing on **machine learning** and **data mining**.
+Currently I am focusing on Blockchain.
 
-For applications, I am also interested in the following areas:
+Previously, I learn about **machine learning** and **data mining**, which are still atttractive to me. For applications, I am also interested in the following areas:
 
 - recommender system
