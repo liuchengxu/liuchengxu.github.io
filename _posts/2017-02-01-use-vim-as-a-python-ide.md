@@ -46,6 +46,24 @@ autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
 
 Or you can use its vim plugin: [fisadev/vim-isort](https://github.com/fisadev/vim-isort#installation).
 
+**Update:** ALE now has a command [`ALEFix` for autofixing](https://github.com/w0rp/ale/issues/541). Concerning *code formatter* and *sort import*, you could do that by merely configuring ALE properly. I'd love to put these in `ftplugin/python.vim`:
+
+```vim
+
+let b:ale_linters = ['flake8']
+let b:ale_fixers = [
+\   'remove_trailing_lines',
+\   'isort',
+\   'ale#fixers#generic_python#BreakUpLongLines',
+\   'yapf',
+\]
+
+nnoremap <buffer> <silent> <LocalLeader>= :ALEFix<CR>
+
+```
+
+Now you have the support of syntax checking and autofixing with one ALE! As a matter of fact, ALE also has a plan to support auto-completion via [LSP](https://langserver.org/). Keep watching this amazing project if you are interested.
+
 ### Auto Completion
 
 [Valloric/YouCompleteMe](https://github.com/Valloric/YouCompleteMe) is a good way to provide code auto completion. It has several completion engines, aside from Python, C, C++, Rust, Go and Javascript are also supported. Whereas a bunch of people also think YCM is too huge and need to be compiled, then [jedi-vim](https://github.com/davidhalter/jedi-vim) is an alternative. They all use [jedi](https://github.com/davidhalter/jedi) as their backend.
