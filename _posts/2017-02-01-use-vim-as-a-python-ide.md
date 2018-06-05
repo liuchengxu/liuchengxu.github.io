@@ -46,7 +46,7 @@ autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
 
 Or you can use its vim plugin: [fisadev/vim-isort](https://github.com/fisadev/vim-isort#installation).
 
-**Update:** ALE now has a command [`ALEFix` for autofixing](https://github.com/w0rp/ale/issues/541). Concerning *code formatter* and *sort import*, you could do that by merely configuring ALE properly. I'd love to put these in `ftplugin/python.vim`:
+**Update:** ALE now has a command [`ALEFix` for autofixing](https://github.com/w0rp/ale/issues/541). Concerning *code formatter* and *sort import*, you could do that by merely configuring ALE properly. I'd love to put these in [ftplugin/python.vim](https://github.com/liuchengxu/space-vim/blob/master/core/ftplugin/python.vim):
 
 ```vim
 
@@ -62,6 +62,12 @@ nnoremap <buffer> <silent> <LocalLeader>= :ALEFix<CR>
 
 ```
 
+If you want to fix files automatically on save:
+
+```vim
+let g:ale_fix_on_save = 1
+```
+
 Now you have the support of syntax checking and autofixing with one ALE! As a matter of fact, ALE also has a plan to support auto-completion via [LSP](https://langserver.org/). Keep watching this amazing project if you are interested.
 
 ### Auto Completion
@@ -73,15 +79,17 @@ Now you have the support of syntax checking and autofixing with one ALE! As a ma
 
 What's more, I know many people use [Shougo/deoplete.nvim](https://github.com/Shougo/deoplete.nvim). Thanks to the async API, some more hopeful completion plugins are borned:
 
+[maralla/completor.vim](https://github.com/maralla/completor.vim) is an code completion framework for Vim8, and support NeoVim too.
+
+![completor.vim](https://camo.githubusercontent.com/0dcc3b75a89c1366910d913fa5668a5b004fedb7/687474703a2f2f692e696d6775722e636f6d2f6635456f6941362e676966)
+(from Completor)
+
 [roxma/nvim-completion-manager](https://github.com/roxma/nvim-completion-manager) also provides experimental support for Vim8. [prabirshrestha/asyncomplete.vim](https://github.com/prabirshrestha/asyncomplete.vim) is a fork of nvim-completion-manager in pure vim script with python dependency removed.
 
 ![nvim-completion-manager](https://cloud.githubusercontent.com/assets/4538941/23752974/8fffbdda-0512-11e7-8466-8a30f480de21.gif)
 (from NCM)
 
-[maralla/completor.vim](https://github.com/maralla/completor.vim) is an code completion framework for Vim8, and support NeoVim too.
-
-![completor.vim](https://camo.githubusercontent.com/0dcc3b75a89c1366910d913fa5668a5b004fedb7/687474703a2f2f692e696d6775722e636f6d2f6635456f6941362e676966)
-(from Completor)
+**Update:** Unfortunately, [NCM](https://github.com/roxma/nvim-completion-manager/issues/12#issuecomment-382334422) is not maintained any more.
 
 ### Quick Run
 
@@ -90,12 +98,6 @@ If use Vim8, you can execute python file asynchronously by [skywind3000/asyncrun
 ```vim
 " Quick run via <F5>
 nnoremap <F5> :call <SID>compile_and_run()<CR>
-
-augroup SPACEVIM_ASYNCRUN
-    autocmd!
-    " Automatically open the quickfix window
-    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(15, 1)
-augroup END
 
 function! s:compile_and_run()
     exec 'w'
@@ -111,6 +113,15 @@ function! s:compile_and_run()
        exec "AsyncRun! time python %"
     endif
 endfunction
+
+" augroup SPACEVIM_ASYNCRUN
+"     autocmd!
+"    " Automatically open the quickfix window
+"     autocmd User AsyncRunStart call asyncrun#quickfix_toggle(15, 1)
+" augroup END
+"
+" asyncrun now has an option for opening quickfix automatically
+let g:asyncrun_open = 15
 ```
 
 For neovim, [neomake/neomake](https://github.com/neomake/neomake) is worthy of trying. Here is the description from neomake's README:
@@ -126,14 +137,20 @@ Another approach is to use **[TMUX](https://github.com/tmux/tmux)**. The idea is
 [python-mode/python-mode](https://github.com/python-mode/python-mode) provides a more precise python syntax highlighting than the defaults. For example, you can add a highlighting for `pythonSelf` .
 
 ```vim
+
 hi pythonSelf  ctermfg=68  guifg=#5f87d7 cterm=bold gui=bold
+
 ```
 
 ![](https://github.com/liuchengxu/space-vim-dark/blob/screenshots/screenshot2.png?raw=true)
 
-For more customized python syntax highlightings, please see [space-vim-dark theme](https://github.com/liuchengxu/space-vim-dark/blob/master/colors/space-vim-dark.vim#L288-L311) and *syntax/python.vim* in [python-mode/python-mode](https://github.com/python-mode/python-mode/blob/develop/syntax/python.vim) . You can also put them after color command.
+For more customized python syntax highlightings, please see [space-vim-dark theme](https://github.com/liuchengxu/space-vim-dark/blob/aea1ef1707a40e6518a569911a63e9c41104d27e/colors/space-vim-dark.vim#L318-L337) and *syntax/python.vim* in [python-mode/python-mode](https://github.com/python-mode/python-mode/blob/develop/syntax/python.vim) . You can also put them after color command.
 
 Actually, python-mode contains tons of stuff to develop python applications in Vim, e.g., static analysis, completion, documentation, and more. (But personally, I prefer to obtain the functionalities by some other better plugins.)
+
+### Python text objects
+
+[vim-pythonsense](https://github.com/jeetsukumaran/vim-pythonsense) provides text objects and motions for Python classes, methods, functions, and doc strings.
 
 ### Summary
 
