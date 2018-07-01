@@ -1,132 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+    <head>
+        <title>Liu-Cheng Xu</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700' rel='stylesheet' type='text/css'>
+        <style>
+            html, body {
+                overflow: hidden;
+                margin: 0;
+            }
+            body {
+                font-family: 'Open Sans', 'Helvetica Neue', 'Hiragino Sans GB', 'LiHei Pro', Arial, sans-serif;
+                color: #333;
+            }
+            #wrapper {
+                position: absolute;
+                left: 0;
+                width: 320px;
+                text-align: center;
+                top: 50%;
+                left: 50%;
+                margin-left: -160px;
+                margin-top: -160px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+            }
+            h1 {
+                font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+                font-weight: 700;
+                font-size: 25px;
+                letter-spacing: 6px;
+                text-transform: uppercase;
+                margin: 12px 0;
+                left: 4px;
+            }
+            h2 {
+                color: #999;
+                font-weight: normal;
+                font-size: 15px;
+                letter-spacing: .12em;
+                margin-bottom: 30px;
+                left: 3px;
+            }
+            h1, h2 {
+                position: relative;
+            }
+            p {
+                font-size: 14px;
+                line-height: 2em;
+                margin: 0;
+                letter-spacing: 2px;
+            }
+            canvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+            }
+            a {
+                color: #999;
+                text-decoration: none;
+                transition: color .2s ease;
+            }
+            a:hover {
+                color: #f33;
+            }
+        </style>
+        <script type="text/javascript">
 
-  <head>
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-73260325-1']);
+          _gaq.push(['_setDomainName', 'liuchengxu.org']);
+          _gaq.push(['_trackPageview']);
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Liu Cheng-Xu's Homepage">
-    <meta name="author" content="Liu Cheng-Xu">
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
 
-    <link rel="shortcut icon" href="assets/images/x.gif" type="image/x-icon"/>
-
-    <title>Liu Cheng-Xu's Homepage</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
-
-    <!-- Custom styles for this template -->
-    <link href="css/grayscale.min.css" rel="stylesheet">
-
-  </head>
-
-  <body id="page-top">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Hello</a>
-      </div>
-    </nav>
-
-    <!-- Intro Header -->
-    <header class="masthead">
-      <div class="intro-body">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <h1 class="brand-heading">Liu Cheng-Xu</h1>
-              <p class="intro-text">I am focusing on Blockchain currently.</p>
-            </div>
-          </div>
-            <ul class="list-inline banner-social-buttons">
-              <li class="list-inline-item">
-                <a href="home" class="btn btn-default btn-lg">
-                  <i class="fa fa-pencil fa-fw"></i>
-                  <span class="network-name">Blog</span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://liuchengxu.github.io/blog-cn" class="btn btn-default btn-lg">
-                  <i class="fa fa-bug fa-fw"></i>
-                  <span class="network-name">博客</span>
-                </a>
-              </li>
-            </ul>
-
-            <ul class="list-inline banner-social-buttons">
-              <li class="list-inline-item">
-                <a href="https://twitter.com/_liuchengxu" class="btn btn-default btn-lg">
-                  <i class="fa fa-twitter fa-fw"></i>
-                  <span class="network-name">Twitter</span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://github.com/liuchengxu" class="btn btn-default btn-lg">
-                  <i class="fa fa-github fa-fw"></i>
-                  <span class="network-name">Github</span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="mailto:xuliuchengxlc@gmail.com" class="btn btn-default btn-lg">
-                  <i class="fa fa-envelope fa-fw"></i>
-                  <span class="network-name">Email</span>
-                </a>
-              </li>
-            </ul>
-            <ul class="list-inline banner-social-buttons">
-              <li class="list-inline-item">
-                <a href="https://www.jianshu.com/u/daf68451f175" class="btn btn-default btn-lg">
-                  <img class="fa fa-fw" src="img/jianshu.ico"></img>
-                  <span class="network-name">简书</span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://www.zhihu.com/people/simple_the_best/activities" class="btn btn-default btn-lg">
-                  <img class="fa fa-fw" src="img/zhihu.ico"></img>
-                  <span class="network-name">知乎</span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="http://blog.csdn.net/simple_the_best" class="btn btn-default btn-lg">
-                  <img class="fa fa-fw" src="img/csdn.png"></img>
-                  <span class="network-name">CSDN</span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://segmentfault.com/u/liuchengxu" class="btn btn-default btn-lg">
-                  <img class="fa fa-fw" src="img/sf.ico"></img>
-                  <span class="network-name">SegmentFault</span>
-                </a>
-              </li>
-            </ul>
-
+        </script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <h1>Liu-Cheng Xu</h1>
+            <h2>Focusing on Blockchain currently</h2>
+            <p><a href="https://liuchengxu.github.io/home" target="_blank">Blog</a></p>
+            <p><a href="https://twitter.com/_liuchengxu" target="_blank">Twitter</a></p>
+            <p><a href="https://github.com/liuchengxu" target="_blank">Github</a></p>
+            <p><a href="https://liuchengxu.github.io/blog-cn" target="_blank">博客</a></p>
+            <p><a href="https://www.jianshu.com/u/daf68451f175" target="_blank">简书</a></p>
+            <p><a href="https://www.zhihu.com/people/simple_the_best/" target="_blank">知乎</a></p>
         </div>
-      </div>
-    </header>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container text-center">
-        <p>Copyright &copy; Liu Cheng-Xu 2018</p>
-      </div>
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="js/grayscale.min.js"></script>
-
-  </body>
-
+        <canvas></canvas>
+    </body>
 </html>
