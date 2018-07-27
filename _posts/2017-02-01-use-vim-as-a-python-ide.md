@@ -91,6 +91,8 @@ What's more, I know many people use [Shougo/deoplete.nvim](https://github.com/Sh
 
 **Update:** Unfortunately, [NCM](https://github.com/roxma/nvim-completion-manager/issues/12#issuecomment-382334422) is not maintained any more.
 
+**Update again:** [ncm2](https://github.com/ncm2/ncm2), the successor of NCM, comes out! [coc.nvim](https://github.com/neoclide/coc.nvim) is also promising.
+
 ### Quick Run
 
 If use Vim8, you can execute python file asynchronously by [skywind3000/asyncrun.vim](https://github.com/skywind3000/asyncrun.vim) and output automatically the result to the quickfix window like this:
