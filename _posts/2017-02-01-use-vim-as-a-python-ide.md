@@ -116,6 +116,7 @@ function! s:compile_and_run()
     endif
 endfunction
 
+" Deprecated:
 " augroup SPACEVIM_ASYNCRUN
 "     autocmd!
 "    " Automatically open the quickfix window
@@ -154,15 +155,37 @@ Actually, python-mode contains tons of stuff to develop python applications in V
 
 [vim-pythonsense](https://github.com/jeetsukumaran/vim-pythonsense) provides text objects and motions for Python classes, methods, functions, and doc strings.
 
+### LSP
+
+The concept of [Language Server Protocol](https://langserver.org/) has been around for quite a while, many languages already have a decent LSP support. So far LSP is the only way to bring in various features similar to IDE for the text editors in a standard way. To do that, you need to install the correspoding language server and a LSP client to interact with it.
+
+ Vim LSP client                                                             | Implementation | Support
+[LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim)  | Rust           | vim/neovim
+[ale](https://github.com/w0rp/ale)                                          | VimL           | vim/neovim
+[vim-lsp](https://github.com/prabirshrestha/vim-lsp)                        | VimL           | vim/neovim
+[neovim's built-in LSP support](https://github.com/neovim/neovim/pull/6856) | Lua            | neovim only
+
+LCN implements the LSP client in Rust, so it obviously has an outstanding performance compared to others written in vimscript or lua. Most LSP clients are usable now, but far from perfect:
+
+- simple and crude UI
+- poor performance
+
+Still a long way to go :).
+
 ### Summary
 
-There are also some neccessary general programming plugins, e.g., [scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter) for convenient commenter, [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine) or [nathanaelkane/vim-indent-guides](https://github.com/nathanaelkane/vim-indent-guides) for visually displaying indent levels in Vim, [fzf](https://github.com/junegunn/fzf)  and [fzf.vim](https://github.com/junegunn/fzf.vim) for fuzzy file searching, etc.
+There are also some neccessary general programming plugins, e.g.
+
+- [scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter) for convenient commenter.
+- [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine) or [nathanaelkane/vim-indent-guides](https://github.com/nathanaelkane/vim-indent-guides) for visually displaying indent levels in Vim.
+- [fzf](https://github.com/junegunn/fzf)  and [fzf.vim](https://github.com/junegunn/fzf.vim) for fuzzy file searching, also [vim-fz](https://github.com/mattn/vim-fz) and [fzy](https://github.com/jhawthorn/fzy).
+- ......
 
 Although vim is great and many plugins are productive, IDE is still my first choice when it comes to refactoring code and debugging:). Some useful links for debugging python:
 
 - [python-debugging-tips](http://stackoverflow.com/questions/1623039/python-debugging-tips)
 - [my-python-ipython-vim-debugging-workflow](http://keflavich.github.io/blog/my-python-ipython-vim-debugging-workflow.html)
 
-For detailed vim configuration, please see **[space-vim](https://github.com/liuchengxu/space-vim)**, enable ycmd, syntax-checking, python, programming Layer , then you could get a nice vim environment for python like the screenshot. Hope it helpful.
+For detailed vim configuration, please refer to **[space-vim](https://github.com/liuchengxu/space-vim)**. Enable `ycmd`/`lsp`, `auto-completion`, `syntax-checking`, `python`, `programming` Layer , then you could get a nice vim environment for python like the above screenshot. Enjoy!
 
-![](https://github.com/liuchengxu/space-vim-dark/blob/screenshots/screenshot1.png?raw=true)
+![](https://raw.githubusercontent.com/liuchengxu/img/master/vim-which-key/vim-which-key.png)
