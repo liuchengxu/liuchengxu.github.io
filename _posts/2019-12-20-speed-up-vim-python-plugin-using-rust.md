@@ -3,7 +3,7 @@ bg: "tools.jpg"
 layout: post
 title:  "Make Vim Python plugin 10x faster using Rust"
 crawlertitle: "Speed up your vim python plugin by using Rust"
-summary: "Using Rust to speed up the built-in fuzzy filter of vim-clap written in Python"
+summary: "Use Rust to speed up the built-in fuzzy filter of vim-clap written in Python"
 categories: posts
 tags: ['vim']
 author: Liu-Cheng Xu
@@ -73,7 +73,7 @@ test_pure_python_200000     12,122.4214 (>1000.0)  12,300.0331 (344.18)   12,238
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ```
 
-From the profile of Vim/Neovim(`:h profile`), we can consider this as the true enhancement we can feel practially:
+From the profile of Vim/Neovim(`:h profile`), we can consider this as the true enhancement we can feel practically:
 
 ```
 stats of pure Python fuzzy filter performance:
