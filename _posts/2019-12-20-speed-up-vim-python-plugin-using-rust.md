@@ -9,7 +9,7 @@ tags: ['vim']
 author: Liu-Cheng Xu
 ---
 
-This post essentially talks about making X 10x faster using Y, so it's obvious that X and Y must do the same thing, otherwise it's totally pointless to talk about the speed. The trick behind this is deadly simple, rewritting a scriptd program with another compiled language.
+This post essentially talks about making X 10x faster using Y, so it's obvious that X and Y must do the same thing, otherwise it's totally pointless to talk about the speed. The trick behind this is deadly simple, rewritting a scripted program with another compiled language.
 
 In this context, we are actually speeding up a Python function 10x faster by rewritting it in Rust.
 
@@ -29,7 +29,7 @@ In this context, we are actually speeding up a Python function 10x faster by rew
 
     ```
 
-This function takes a query and a bunch of candidates, apply the same [fzy algorithm](https://github.com/jhawthorn/fzy/blob/master/ALGORITHM.md) on each candidate to get the fuzzy matched indices and score, rank all these selected candidates based on the score and then return a tuple of filtered candidates as well as their indices.
+This function takes a query string and a bunch of candidates, apply the same [fzy algorithm](https://github.com/jhawthorn/fzy/blob/master/ALGORITHM.md) on each candidate to get the fuzzy matched indices and score, rank all these selected candidates based on the score and then return a tuple of filtered candidates as well as their indices.
 
 **The whole story is as followed. Jump to the end directly if you don't care about it.**
 
@@ -96,7 +96,10 @@ What I have to do is:
 
 1. wrap the Rust version fzy implemented by [stewart/rff](https://github.com/stewart/rff) and generate the Python dynamic module, see [pythonx/clap/fuzzymatch-rs/src/lib.rs](https://github.com/liuchengxu/vim-clap/blob/fd2e042621/pythonx/clap/fuzzymatch-rs/src/lib.rs). In case of some people are confused, `rff::match_and_score_with_positions` implements the same fzy algorithm. [This Rust closure](https://github.com/liuchengxu/vim-clap/blob/fd2e042621/pythonx/clap/fuzzymatch-rs/src/lib.rs#L8-L10) is equivalent to the [original Python version of fzy](https://github.com/liuchengxu/vim-clap/blob/fd2e042621/pythonx/clap/fzy_impl.py#L195).
 
-2. replace the pure Python fzy in [vim-clap](https://github.com/liuchengxu/vim-clap) with the generated Python dynamic module.
+2. replace the [original pure Python fzy in vim-clap](https://github.com/liuchengxu/vim-clap/blob/0bc45f3950/autoload/clap/filter.vim#L152-L157) with the generated Python dynamic module.
+
+    - [Try loading the python dynamic module](https://github.com/liuchengxu/vim-clap/blob/9c12bf2d92/pythonx/clap/fzy.py#L31-L37)
+    - [Use the Rust version fuzzy filter if the dynamic module exists](https://github.com/liuchengxu/vim-clap/blob/9c12bf2d92/autoload/clap/filter.vim#L153-L175)
 
 ### Test
 
