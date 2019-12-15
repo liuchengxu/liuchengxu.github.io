@@ -9,6 +9,34 @@ tags: ['vim']
 author: Liu-Cheng Xu
 ---
 
+This post essentially talks about making X 10x faster using Y, so it's obvious that X and Y must do the same thing, otherwise it's totally pointless to talk about the speed. The trick behind this is deadly simple, rewritting a scriptd program with another compiled language.
+
+In this context, we are actually speeding up a Python function 10x faster by rewritting it in Rust.
+
+- [Original Python function](https://github.com/liuchengxu/vim-clap/blob/fd2e042621/pythonx/clap/fzy.py#L8):
+
+    ```python
+
+    def fuzzy_match_py(query, candidates);
+
+    ```
+
+- [Rewritten Rust replacement](https://github.com/liuchengxu/vim-clap/blob/fd2e042621/pythonx/clap/fuzzymatch-rs/src/lib.rs#L7)
+
+    ```rust
+
+    fn fuzzy_match(query: &str, candidates: Vec<String>) -> PyResult<(Vec<Vec<usize>>, Vec<String>)>;
+
+    ```
+
+This function takes a query and a bunch of candidates, apply the same [fzy algorithm](https://github.com/jhawthorn/fzy/blob/master/ALGORITHM.md) on each candidate to get the fuzzy matched indices and score, rank all these selected candidates based on the score and then return a tuple of filtered candidates as well as their indices.
+
+**The whole story is as followed. Jump to the end directly if you don't care about it.**
+
+--------------
+
+## Introduction
+
 Several months ago, I released my favorite Vim plugin by the far: [**vim-clap**](https://github.com/liuchengxu/vim-clap), which is a generic fuzzy finder and dispatcher, using the modern `popup`(Vim) and `floating_win`(NeoVim) feature, written in Pure VimScript. Of course, it's asynchoronous. At the beginning, I'm very proud of that clap is in pure vimscript in that it will have the minimal pain to setup, neither extra compiled feature nor external dependency is required, just works well on all the platform for both Vim and NeoVim.
 
 ![](https://user-images.githubusercontent.com/8850248/66710372-7df56180-eda9-11e9-8c41-ffbc462a5340.gif)
@@ -30,31 +58,51 @@ Plug 'liuchengxu/vim-clap'
 
 It's in pure vimscript that brings vim-clap the feature of minimal installtion requirements. However, that feature becomes to a subtle _bug_ over time. You know, VimScript is never known as a performant script language, instead it's much slower than the popular Python and Lua. You can never apply these complex logic in vimscript and expect your plugin to run very well.
 
-No one wants to use a Vim plugin that is slow, so one principle of [vim-clap](https://github.com/liuchengxu/vim-clap) is always to run asynchoronously so that the UI will never be blocked. I thought using the async job would be the ultimate solution, but it's not unfornately. The asynchoronous job does help mostly, but not completely. The first thing is that job of Vim/NeoVim causes a `redraw` problem, you can see the flicker obviously. What's more, using the async job only can not let Vim remain reponsive when dispatching these CPU-intensive tasks, [see this issue](https://github.com/liuchengxu/vim-clap/issues/75).
+### Problem of using `job` of Vim/NeoVim
+
+No one wants to use a Vim plugin that is slow, so one principle of [vim-clap](https://github.com/liuchengxu/vim-clap) is always to run asynchoronously so that the UI will never be blocked. I thought using the async job would be the ultimate solution, but it's not unfornately. The asynchoronous job does help mostly, but not completely. The first thing is that job of Vim/NeoVim causes a `redraw` problem, you can see the flicker obviously.
 
 ![](https://user-images.githubusercontent.com/8850248/67620599-3b1c9a80-f83b-11e9-8d8c-72bfae9d9177.gif)
 
 (Note the flicker happens in `:Clap grep`, that doesn't happen in `:Clap blines` )
 
+What's more, using the async job only can not let Vim remain reponsive when dispatching these CPU-intensive tasks, [see this issue](https://github.com/liuchengxu/vim-clap/issues/75).
+
+### Missing advanced fuzzy finder in VimScript
+
 As I have said, vim-clap can be served as a fuzzy finder. With vimscript only, you can only handle a small few thousand items and have the limited regex based substring fuzzy filtering at that moment. There is no advanced fuzzy filtering algorithm written in vimscript.
 
 One solution is to leverage the existing fuzzy finders, e.g., [fzy](https://github.com/jhawthorn/fzy), [fzf](https://github.com/junegunn/fzf), [skim](https://github.com/lotabout/skim), using the async `job` feature which already exists in both Vim and NeoVim for a while . And quickly the external fuzzy filter support is added, now you could use `:Clap! blines ++ef=fzf` to filtering the buffer lines using fzf. But I'm actually still not satisfied as the external fuzzy filter has to rely on the async job, the `redraw` issue of which has been settled though.
 
-Then I began to resort Python or lua to achive faster and better built-in fuzzy filtering in order to avoid the `redraw` issue of async job. Fortunately, I found [aslpavel/sweep.py](https://github.com/aslpavel/sweep.py/blob/master/sweep.py) which has implemented the [fzy fuzzy finder having better results than other fuzzy finders](https://github.com/jhawthorn/fzy/blob/master/ALGORITHM.md). Then I shamelessly borrowed its internal fzy implementation into [vim-clap](https://github.com/liuchengxu/vim-clap), [see the initial PR]( https://github.com/liuchengxu/vim-clap/pull/92).
+### Embed fzy Python implementation in Vim
 
-With Python, now we can handle 10,000 items and have the best fuzzy finder embedded in Vim.
+Then I began to resort Python or Lua to achive faster and better built-in fuzzy filtering in order to avoid the `redraw` issue of async job. Fortunately, I found [aslpavel/sweep.py](https://github.com/aslpavel/sweep.py/blob/master/sweep.py) which has implemented the [fzy fuzzy finder having better results than other fuzzy finders](https://github.com/jhawthorn/fzy/blob/master/ALGORITHM.md).
+
+And I shamelessly borrowed [its internal fzy implementation](https://github.com/aslpavel/sweep.py/blob/bfc11a26acc5821ab570d926a78b29f87153285a/sweep.py#L700-L823) into [vim-clap](https://github.com/liuchengxu/vim-clap), [see the initial PR]( https://github.com/liuchengxu/vim-clap/pull/92).
+
+With Python, now we can handle 10,000 items and have the best fuzzy finder embedded in Vim, without worrying about the `redraw` issue of async job.
 
 ## Make Python filter 10x faster using Rust
 
-The introduced Python fzy implementation in vim-clap can handle 10,000 items decently, but that's far from enough from my perspective. And with some profile, I found the bottleneck is this fuzzy filtering function. Once I read about this post [Speed up your Python using Rust](https://developers.redhat.com/blog/2017/11/16/speed-python-using-rust/), I immediately realized that that's a fairly promising optimization.
+The introduced Python fzy implementation in vim-clap can handle 10,000 items decently, but that's far from enough from my perspective. And with some profile, I found the bottleneck is [this fzy fuzzy filtering function](https://github.com/liuchengxu/vim-clap/blob/0bc45f3950/autoload/clap/filter.vim#L155). Once I read about this post [Speed up your Python using Rust](https://developers.redhat.com/blog/2017/11/16/speed-python-using-rust/), I immediately realized that that's a fairly promising optimization.
+
+### Rewritting with PyO3
 
 Thanks to [PyO3](https://github.com/PyO3/pyo3), now writting a Python dynamic module in Rust is trivial and elegant. What you need to learn is the exmple on the README of PyO3 and rewritting the related function in Python to Rust. As a matter of fact, I firstly used [rust-cpython](https://github.com/dgrunwald/rust-cpython), but I ran into some issues on macOS, hence I switched to PyO3 and it works smoothly.
 
 Thanks to [stewart/rff](https://github.com/stewart/rff), the fzy Rust implementation is already good to go.
 
-What I have to do is to wrap the Rust version fzy and replace the pure Python fzy in [vim-clap](https://github.com/liuchengxu/vim-clap) with the generated Python dynamic module.
+What I have to do is:
+
+1. wrap the Rust version fzy implemented by [stewart/rff](https://github.com/stewart/rff) and generate the Python dynamic module, see [pythonx/clap/fuzzymatch-rs/src/lib.rs](https://github.com/liuchengxu/vim-clap/blob/fd2e042621/pythonx/clap/fuzzymatch-rs/src/lib.rs). In case of some people are confused, `rff::match_and_score_with_positions` implements the same fzy algorithm. [This Rust closure](https://github.com/liuchengxu/vim-clap/blob/fd2e042621/pythonx/clap/fuzzymatch-rs/src/lib.rs#L8-L10) is equivalent to the [original Python version of fzy](https://github.com/liuchengxu/vim-clap/blob/fd2e042621/pythonx/clap/fzy_impl.py#L195).
+
+2. replace the pure Python fzy in [vim-clap](https://github.com/liuchengxu/vim-clap) with the generated Python dynamic module.
+
+### Test
 
 I did some tests laster, and found that the optimization result is very satisfying.
+
+#### Pytest
 
 From pytest, Rust is **30x** faster:
 
@@ -72,6 +120,8 @@ test_rust_200000               427.0450 (42.36)       462.5228 (12.94)       450
 test_pure_python_200000     12,122.4214 (>1000.0)  12,300.0331 (344.18)   12,238.9739 (>1000.0)  72.1199 (16.90)    12,256.4216 (>1000.0)  97.0552 (175.77)        1;0   0.0817 (0.00)          5           1
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ```
+
+#### Vim profile
 
 From the profile of Vim/Neovim(`:h profile`), we can consider this as the true enhancement we can feel practically:
 
