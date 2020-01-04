@@ -68,6 +68,10 @@ No one wants to use a Vim plugin that is slow, so one principle of [vim-clap](ht
 
 What's more, using the async job only can not let Vim remain reponsive when dispatching these CPU-intensive tasks, [see this issue](https://github.com/liuchengxu/vim-clap/issues/75).
 
+>**Update: I wrongly thought the flicker is possibly unavoidable before, with luck the [latest vim-clap](https://github.com/liuchengxu/vim-clap) has fixed the flicker and performance issue of async job!**
+>
+>But the optimization in this post is still meaningful, which could avoid the overheads of spawning the job when the data set is not huge.
+
 ### Missing advanced fuzzy finder in VimScript
 
 As I have said, vim-clap can be served as a fuzzy finder. With vimscript only, you can only handle a small few thousand items and have the limited regex based substring fuzzy filtering at that moment. There is no advanced fuzzy filtering algorithm written in vimscript.
