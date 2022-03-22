@@ -12,7 +12,7 @@ description: > # this means to ignore newlines until "baseurl:"
     The world is indeed a stage and we are merely players.
 baseurl: "" # the subpath of your site, e.g. /blog
 lang: "en"
-url: "http://www.liuchengxu.org" # the base hostname & protocol for your site
+url: "https://liuchengxu.github.io" # the base hostname & protocol for your site
 twitter_username:
 github_username:  liuchengxu
 disqus_username:
